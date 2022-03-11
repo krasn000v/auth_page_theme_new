@@ -1,12 +1,31 @@
+import 'package:auth_page/utils/global_theme.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const ThemeApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class ThemeApp extends StatelessWidget {
+  const ThemeApp({Key? key}) : super(key: key);
 
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: globalTheme(),
+      home: const ThemeScreen(),
+    );
+  }
+}
+
+
+class ThemeScreen extends StatefulWidget {
+  const ThemeScreen({Key? key}) : super(key: key);
+
+  @override
+  State<ThemeScreen> createState() => _ThemeScreenState();
+}
+
+class _ThemeScreenState extends State<ThemeScreen> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -14,11 +33,6 @@ class MyApp extends StatelessWidget {
       borderRadius: BorderRadius.all(Radius.circular(36)),
       borderSide: BorderSide(
         color: Color(0xFFeceff1), width: 2));
-    const linkTextStyle = TextStyle(
-      fontSize: 18,
-      fontWeight: FontWeight.bold,
-      color: Color(0xFFeceff1),
-    );
 
     return MaterialApp(
       home: Scaffold(
@@ -31,17 +45,17 @@ class MyApp extends StatelessWidget {
             ),
             width: double.infinity,
             height: double.infinity,
-            padding: EdgeInsets.symmetric(horizontal: 50),
+            padding: const EdgeInsets.symmetric(horizontal: 50),
             child: SingleChildScrollView(
               child: Column(children: [
-                SizedBox(height: 70,),
+                const SizedBox(height: 70,),
                 const SizedBox(width: 110, height: 84, child: Image(image: AssetImage('assets/dart-logo.png')),),
-                SizedBox(height: 20,),
+                const SizedBox(height: 20,),
                 Text('Введите логин в виде 10 цифр номера телефона',
-                  style: TextStyle(fontSize: 16, color: Color.fromRGBO(0, 0, 0, 0.6)),
+                  style: Theme.of(context).textTheme.bodyText2,
                 ),
-                SizedBox(height: 20,),
-                TextField(
+                const SizedBox(height: 20,),
+                const TextField(
                   keyboardType: TextInputType.phone,
                   decoration: InputDecoration(
                     filled: true,
@@ -50,8 +64,8 @@ class MyApp extends StatelessWidget {
                     enabledBorder: borderStyle,
                     focusedBorder: borderStyle,
                   ),),
-                SizedBox(height: 20,),
-                TextField(
+                const SizedBox(height: 20,),
+                const TextField(
                   obscureText: true,
                   decoration: InputDecoration(
                     filled: true,
@@ -60,25 +74,25 @@ class MyApp extends StatelessWidget {
                     enabledBorder: borderStyle,
                     focusedBorder: borderStyle,
                   ),),
-                SizedBox(height: 68,),
+                const SizedBox(height: 68,),
                 SizedBox(width: 154, height: 42,
                     child: ElevatedButton(onPressed: () {},
-                        child: Text('Войти'),
+                        child: const Text('Войти'),
                         style: ElevatedButton.styleFrom(
-                          primary: Color(0xFF0079D0),
+                          primary: Theme.of(context).colorScheme.primary,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(22.0),
                           ),
                         ),
                     ),
                 ),
-                SizedBox(height: 32,),
-                const InkWell(child: Text('Регистрация',
-                  style: linkTextStyle),
+                const SizedBox(height: 32,),
+                InkWell(child: Text('Регистрация',
+                  style: Theme.of(context).textTheme.headline6),
                   onTap: null,),
-                SizedBox(height: 20,),
-                const InkWell(child: Text('Забыли пароль?',
-                    style: linkTextStyle),
+                const SizedBox(height: 20,),
+                InkWell(child: Text('Забыли пароль?',
+                    style: Theme.of(context).textTheme.headline6),
                   onTap: null,)
               ],),
             ),
